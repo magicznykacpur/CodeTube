@@ -1,5 +1,4 @@
-DROP SCHEMA IF EXISTS codetube;
-CREATE SCHEMA codetube;
+CREATE SCHEMA IF NOT EXISTS codetube;
 
 DROP TABLE IF EXISTS codetube.channel;
 CREATE TABLE codetube.channel();
