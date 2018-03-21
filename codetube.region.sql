@@ -1,0 +1,10 @@
+insert into codetube.region (region_name) values ('Clappertonia Meissner');
+insert into codetube.region (region_name) values ('Ligusticum scoticum L. ssp. scoticum');
+insert into codetube.region (region_name) values ('Vaccinium elliottii Chapm.');
+insert into codetube.region (region_name) values ('Opuntia engelmannii Salm-Dyck ex Engelm. var. cuija Griffiths & Hare');
+insert into codetube.region (region_name) values ('Crataegus macrosperma Ashe');
+insert into codetube.region (region_name) values ('Artemisia cana Pursh ssp. bolanderi (A. Gray) G.H. Ward');
+insert into codetube.region (region_name) values ('Phoradendron leucarpum (Raf.) Reveal & M.C. Johnst.');
+insert into codetube.region (region_name) values ('Scorzonera L.');
+insert into codetube.region (region_name) values ('Parmotrema perforatum (Jacq.) A. Massal.');
+insert into codetube.region (region_name) values ('Helianthus grosseserratus M. Martens');
