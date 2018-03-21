@@ -27,12 +27,10 @@ CREATE TABLE IF NOT EXISTS codetube.country(
   country_name TEXT   UNIQUE NOT NULL
 );
 
--- DROP TABLE IF EXISTS codetube.restriction;
-CREATE TABLE IF NOT EXISTS codetube.restriction(
-  id       SERIAL PRIMARY KEY,
-  region_1 TEXT   UNIQUE NOT NULL,
-  region_2 TEXT   UNIQUE NOT NULL,
-  region_3 TEXT   UNIQUE NOT NULL
+-- DROP TABLE IF EXISTS codetube.region;
+CREATE TABLE IF NOT EXISTS codetube.region(
+  id          SERIAL PRIMARY KEY,
+  region_name TEXT   UNIQUE NOT NULL,
 );
 
 -- DROP TABLE IF EXISTS codetube.user_data;
@@ -62,8 +60,8 @@ CREATE TABLE IF NOT EXISTS codetube.subscriber(
 -- DROP TABLE IF EXISTS codetube.stream;
 CREATE TABLE IF NOT EXISTS codetube.stream(
   id             SERIAL  PRIMARY KEY,
-  channel_id     INTEGER REFERENCES channel(id) NOT NULL,
-  title          TEXT                           NOT NULL,
+  channel_id     INTEGER REFERENCES channel(id) UNIQUE NOT NULL,
+  title          TEXT                                  NOT NULL,
   description    TEXT,
   lajks_count    INTEGER,
   dislajks_count INTEGER,
@@ -91,7 +89,7 @@ CREATE TABLE IF NOT EXISTS codetube.video(
   url              TEXT    UNIQUE                     NOT NULL,
   description      TEXT,
   privacy_settings BOOLEAN                            NOT NULL,
-  restrictions     INTEGER REFERENCES restriction(id) NOT NULL
+  region           INTEGER REFERENCES region(id)      NOT NULL
 );
 
 -- DROP TABLE IF EXISTS codetube.view;
@@ -116,4 +114,11 @@ CREATE TABLE IF NOT EXISTS codetube.playlist_video(
   id          SERIAL  PRIMARY KEY,
   playlist_id INTEGER REFERENCES playlist(id) NOT NULL,
   video_id    INTEGER REFERENCES video(id)    NOT NULL
+);
+
+-- DROP TABLE IF EXISTS codetube.region_country;
+CREATE TABLE IF NOT EXISTS codetube.region_country(
+  id         SERIAL  PRIMARY KEY,
+  region_id  INTEGER REFERENCES region(id) NOT NULL,
+  country_id INTEGER REFERENCES country(id)     NOT NULL
 );
