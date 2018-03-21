@@ -63,9 +63,9 @@ CREATE TABLE IF NOT EXISTS codetube.stream(
   channel_id     INTEGER REFERENCES channel(id) UNIQUE NOT NULL,
   title          TEXT                                  NOT NULL,
   description    TEXT,
+  viewers_count  INTEGER,
   lajks_count    INTEGER,
-  dislajks_count INTEGER,
-  viewers_count  INTEGER
+  dislajks_count INTEGER
 );
 
 -- DROP TABLE IF EXISTS codetube.stream_channel;
