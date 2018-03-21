@@ -1,10 +1,23 @@
 CREATE SCHEMA IF NOT EXISTS codetube;
 
+-- DROP TABLE IF EXISTS codetube.settings;
+CREATE TABLE IF NOT EXISTS codetube.settings(
+  id                SERIAL PRIMARY KEY,
+  black_theme       BOOLEAN NOT NULL,
+  codetube_red      BOOLEAN NOT NULL,
+  partnership       BOOLEAN NOT NULL,
+  streaming         BOOLEAN NOT NULL,
+  longer_than_15    BOOLEAN NOT NULL,
+  video_privacy     BOOLEAN NOT NULL,
+  custom_thumbnails BOOLEAN NOT NULL,
+  aux_annotations   BOOLEAN NOT NULL
+);
+
 -- DROP TABLE IF EXISTS codetube.channel;
 CREATE TABLE IF NOT EXISTS codetube.channel (
   id                SERIAL PRIMARY KEY,
-  creation_date     TIMESTAMP WITH TIME ZONE NOT NULL,
-  settings          INTEGER                  NOT NULL,
+  creation_date     TIMESTAMP WITH TIME ZONE        NOT NULL,
+  settings          INTEGER REFERENCES settings(id) NOT NULL,
   subscribers_count INTEGER
 );
 
@@ -20,19 +33,6 @@ CREATE TABLE IF NOT EXISTS codetube.restriction(
   region_1 TEXT   UNIQUE NOT NULL,
   region_2 TEXT   UNIQUE NOT NULL,
   region_3 TEXT   UNIQUE NOT NULL
-);
-
--- DROP TABLE IF EXISTS codetube.settings;
-CREATE TABLE IF NOT EXISTS codetube.settings(
-  id                SERIAL PRIMARY KEY,
-  black_theme       BOOLEAN NOT NULL,
-  codetube_red      BOOLEAN NOT NULL,
-  partnership       BOOLEAN NOT NULL,
-  streaming         BOOLEAN NOT NULL,
-  longer_than_15    BOOLEAN NOT NULL,
-  video_privacy     BOOLEAN NOT NULL,
-  custom_thumbnails BOOLEAN NOT NULL,
-  aux_annotations   BOOLEAN NOT NULL
 );
 
 -- DROP TABLE IF EXISTS codetube.user_data;
