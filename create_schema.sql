@@ -1,16 +1,35 @@
 CREATE SCHEMA IF NOT EXISTS codetube;
 
 DROP TABLE IF EXISTS codetube.channel;
-CREATE TABLE codetube.channel();
+CREATE TABLE codetube.channel (
+  id                SERIAL PRIMARY KEY,
+  creation_date     TIMESTAMP WITH TIME ZONE NOT NULL,
+  settings          INTEGER                  NOT NULL,
+  subscribers_count INTEGER
+);
 
 DROP TABLE IF EXISTS codetube.login_info;
-CREATE TABLE codetube.login_info();
+CREATE TABLE codetube.login_info (
+  id            SERIAL PRIMARY KEY,
+  user_data_id  INTEGER REFERENCES user_data(id)  UNIQUE,
+  email         TEXT                              NOT NULL,
+  password_hash TEXT                              NOT NULL,
+  salt          TEXT                              NOT NULL
+);
 
 DROP TABLE IF EXISTS codetube.user_data;
-CREATE TABLE codetube.user_data();
+CREATE TABLE codetube.user_data(
+  id         SERIAL  PRIMARY KEY,
+  country_id INTEGER REFERENCES country(id) NOT NULL,
+  user_name  TEXT    UNIQUE                 NOT NULL,
+  channel_id INTEGER REFERENCES channel(id) NOT NULL
+);
 
 DROP TABLE IF EXISTS codetube.country;
-CREATE TABLE codetube.country();
+CREATE TABLE codetube.country(
+  id           SERIAL PRIMARY KEY,
+  country_name TEXT   NOT NULL
+);
 
 DROP TABLE IF EXISTS codetube.subscriber;
 CREATE TABLE codetube.subscriber();
