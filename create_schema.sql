@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS codetube.country(
 -- DROP TABLE IF EXISTS codetube.region;
 CREATE TABLE IF NOT EXISTS codetube.region(
   id          SERIAL PRIMARY KEY,
-  region_name TEXT   UNIQUE NOT NULL,
+  region_name TEXT   UNIQUE NOT NULL
 );
 
 -- DROP TABLE IF EXISTS codetube.user_data;
